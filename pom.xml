@@ -41,7 +41,7 @@
         <spring-data-releasetrain.version>Lovelace-RELEASE</spring-data-releasetrain.version>
         <hibernate.version>5.3.6.Final</hibernate.version>
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
-        <hsqldb.version>2.4.1</hsqldb.version>
+        <hsqldb.version>2.5.1</hsqldb.version>
 
         <!-- Logging -->
         <slf4j.version>1.7.25</slf4j.version>
@@ -445,8 +445,8 @@
                 <db.script>hsqldb</db.script>
                 <jpa.database>HSQL</jpa.database>
                 <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
-                <!-- <jdbc.url>jdbc:hsqldb:mem:petclinic</jdbc.url> -->
-                <jdbc.url>jdbc:hsqldb:./petclinic</jdbc.url>
+                <!-- <jdbc.url>jdbc:hsqldb:mem:petclinicdb</jdbc.url> -->
+                <jdbc.url>jdbc:hsqldb:./petclinicdb</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password/>
             </properties>
