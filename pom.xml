@@ -445,7 +445,8 @@
                 <db.script>hsqldb</db.script>
                 <jpa.database>HSQL</jpa.database>
                 <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
-                <jdbc.url>jdbc:hsqldb:mem:petclinic</jdbc.url>
+                <!-- <jdbc.url>jdbc:hsqldb:mem:petclinic</jdbc.url> -->
+                <jdbc.url>jdbc:hsqldb:./petclinic</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password/>
             </properties>
