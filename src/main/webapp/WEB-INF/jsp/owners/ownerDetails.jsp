@@ -41,7 +41,7 @@
     <br/>
     <br/>
     <br/>
-    <h2>Pets</h2>
+    <h2>Pets and Visits</h2>
 
     <table class="table table-striped">
         <c:forEach var="pet" items="${owner.pets}">
@@ -56,18 +56,6 @@
                         <dt>Type</dt>
                         <dd><c:out value="${pet.type.name}"/></dd>
                     </dl>
-                    <dl>
-                        <dt>
-                            <spring:url value="/owners/{ownerId}/pets/{petId}/edit" var="petUrl">
-                                <spring:param name="ownerId" value="${owner.id}"/>
-                                <spring:param name="petId" value="${pet.id}"/>
-                            </spring:url>
-                            <a href="${fn:escapeXml(petUrl)}">Edit Pet</a>
-                        </dt>
-                    </dl>
-                </td>
-                <td>
-
                 </td>
                 <td valign="top">
                     <table class="table-condensed">
@@ -84,41 +72,19 @@
                             </tr>
                         </c:forEach>
                         <tr>
-
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/edit" var="petUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(petUrl)}">Edit Pet</a>
+                            </td>
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td valign="top">
-                    <table class="table-condensed">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Vaccination Date</th>
-                            <th>Expiration Date</th>
-                            <th>Vet</th>
-                        </tr>
-                        </thead>
-                        <c:forEach var="vaccination" items="${pet.vaccinations}">
-                            <tr>
-                                <td><c:out value="${vaccination.name}"/></td>
-                                <td><petclinic:localDate date="${vaccination.vaccinationDate}" pattern="yyyy-MM-dd"/></td>
-                                <td><petclinic:localDate date="${vaccination.expirationDate}" pattern="yyyy-MM-dd"/></td>
-                            </tr>
-                        </c:forEach>
-                        <tr>
-                            <td>
-                                <spring:url value="/owners/{ownerId}/pets/{petId}/vaccinations/new" var="vaccinationUrl">
-                                    <spring:param name="ownerId" value="${owner.id}"/>
-                                    <spring:param name="petId" value="${pet.id}"/>
-                                </spring:url>
-                                <a href="${fn:escapeXml(vaccinationUrl)}">Add Vaccination</a>
                             </td>
                         </tr>
                     </table>
