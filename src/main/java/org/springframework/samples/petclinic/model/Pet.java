@@ -35,13 +35,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Simple business object representing a pet.
- *
- * @author Ken Krebs
- * @author Juergen Hoeller
- * @author Sam Brannen
- */
 @Entity
 @Table(name = "pets")
 public class Pet extends NamedEntity {
@@ -61,11 +54,13 @@ public class Pet extends NamedEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+    private List<Vaccination> vaccinations;
+
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
-
     public LocalDate getBirthDate() {
         return this.birthDate;
     }
@@ -106,6 +101,24 @@ public class Pet extends NamedEntity {
     public void addVisit(Visit visit) {
         getVisitsInternal().add(visit);
         visit.setPet(this);
+    }
+
+    protected List<Vaccination> getVaccinationsInternal() {
+        if (this.vaccinations == null) {
+            this.vaccinations = new ArrayList<>();
+        }
+        return this.vaccinations;
+    }
+
+    public void addVaccination(Vaccination vaccination) {
+        getVaccinationsInternal().add(vaccination);
+    }
+
+
+    public List<Vaccination> getVaccinations() {
+        List<Vaccination> sortedVaccinations = new ArrayList<>(getVaccinationsInternal());
+        PropertyComparator.sort(sortedVaccinations, new MutableSortDefinition("expirationDate", false, false));
+        return Collections.unmodifiableList(sortedVaccinations);
     }
 
 }
