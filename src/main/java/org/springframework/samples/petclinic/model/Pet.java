@@ -112,6 +112,7 @@ public class Pet extends NamedEntity {
 
     public void addVaccination(Vaccination vaccination) {
         getVaccinationsInternal().add(vaccination);
+        vaccination.setPet(this);
     }
 
 
